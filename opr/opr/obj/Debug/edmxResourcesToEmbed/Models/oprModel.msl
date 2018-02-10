@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="oprEntities">
+    <EntitySetMapping Name="Sections">
+      <EntityTypeMapping TypeName="Model.Section">
+        <MappingFragment StoreEntitySet="Sections">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ShortCode" ColumnName="ShortCode" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DefTables">
+      <EntityTypeMapping TypeName="Model.DefTable">
+        <MappingFragment StoreEntitySet="DefTable">
+          <ScalarProperty Name="TableName" ColumnName="TableName" />
+          <ScalarProperty Name="TableId" ColumnName="TableId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DefControls">
+      <EntityTypeMapping TypeName="Model.DefControl">
+        <MappingFragment StoreEntitySet="DefControl">
+          <ScalarProperty Name="ControlName" ColumnName="ControlName" />
+          <ScalarProperty Name="ControId" ColumnName="ControId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomeFeilds">
+      <EntityTypeMapping TypeName="Model.CustomeFeild">
+        <MappingFragment StoreEntitySet="CustomeFeilds">
+          <ScalarProperty Name="ControlName" ColumnName="ControlName" />
+          <ScalarProperty Name="ControlType" ColumnName="ControlType" />
+          <ScalarProperty Name="TableName" ColumnName="TableName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

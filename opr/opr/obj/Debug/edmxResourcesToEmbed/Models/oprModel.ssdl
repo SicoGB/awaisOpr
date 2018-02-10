@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CustomeFeilds">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TableName" Type="varchar" MaxLength="50" />
+    <Property Name="ControlType" Type="varchar" MaxLength="50" />
+    <Property Name="ControlName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="DefControl">
+    <Key>
+      <PropertyRef Name="ControId" />
+    </Key>
+    <Property Name="ControId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ControlName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="DefTable">
+    <Key>
+      <PropertyRef Name="TableId" />
+    </Key>
+    <Property Name="TableId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TableName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Sections">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="ShortCode" Type="nvarchar" MaxLength="8" />
+    <Property Name="Description" Type="varchar" MaxLength="350" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" />
+    <Property Name="EntryDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="128" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="CustomeFeilds" EntityType="Self.CustomeFeilds" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DefControl" EntityType="Self.DefControl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DefTable" EntityType="Self.DefTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sections" EntityType="Self.Sections" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

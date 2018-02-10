@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "CustomfeildView";
+}
+
+<h2>CustomfeildView</h2>
+
+<div class="table-responsive" style="border:solid;border-color:lightgrey;">
+
+    <table class="table table-striped">
+
+        <tr class="active">
+            <th>ID</th>
+            <th>Table Name</th>
+            <th>Control Type</th>
+            <th>Control Name</th>
+        </tr>
+        @foreach (var modeldt in Model)
+        {
+            <tr>
+
+                <td>@modeldt.Id</td>
+                <td>@modeldt.TableName</td>
+                <td>@modeldt.ControlType</td>
+                <td>@modeldt.ControlName</td>
+
+                <td>@Html.ActionLink("Delete", "DeleteData", new { id = modeldt.Id })</td>
+                <td>@Html.ActionLink("Edit", "EditView", new { id = modeldt.Id })</td>
+
+            </tr>
+        }
+    </table>
+
+</div>
+<div>
+    @*@Html.ActionLink("Back to List", "Index")*@
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

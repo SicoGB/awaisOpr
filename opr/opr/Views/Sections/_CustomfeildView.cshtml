@@ -1,0 +1,85 @@
+﻿@model List<opr.Models.CustomeFeild>
+
+@{
+    ViewBag.Title = "CustomfeildView";
+}
+@using (Ajax.BeginForm("Details", "Sections", new AjaxOptions { Confirm = "Are you sure to continue?", UpdateTargetId = "updateinfor" }))
+{
+    @Html.AntiForgeryToken()
+
+    @*<div>
+            <h4>CustomeFeild</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.TableName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TableName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ControlType)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ControlType)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ControlName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ControlName)
+                </dd>
+
+            </dl>
+        </div>*@
+
+    <div class="table-responsive">
+
+        <table class="table table-striped">
+
+            <tr class="active">
+                <th>ID</th>
+                <th>Table Name</th>
+                <th>Control Type</th>
+                <th>Control Name</th>
+            </tr>
+            @foreach (var modeldt in Model)
+        {
+            <tr>
+
+                <td>@modeldt.Id</td>
+                <td>@modeldt.TableName</td>
+                <td>@modeldt.ControlType</td>
+                <td>@modeldt.ControlName</td>
+
+                <td>@Html.ActionLink("Delete", "DeleteData", new { id = modeldt.Id })</td>
+                <td>@Html.ActionLink("Edit", "EditView", new { id = modeldt.Id })</td>
+
+            </tr>
+        }
+            @*<tr>
+                <td>@Html.DisplayFor(model => model.Id)</td>
+                <td>@Html.DisplayFor(model => model.TableName)</td>
+                <td>@Html.DisplayFor(model => model.ControlType)</td>
+                <td>@Html.DisplayFor(model => model.ControlName)</td>
+            </tr>*@
+
+        </table>
+
+
+            </div >
+}
+            <div id = "updateinfor" ></div >
+        <div>
+        @*@Html.ActionLink("Back to List", "Index")*@
+        @Html.ActionLink("Back to List", "Index")
+        </div>
+        @*<p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@

@@ -1,0 +1,103 @@
+﻿@model opr.Models.CustomeFeild
+
+@using (Ajax.BeginForm("Create", "Sections", new AjaxOptions { Confirm = "Are you sure to continue?", UpdateTargetId = "updateinfor" }))
+{
+    @Html.AntiForgeryToken()
+
+    @*<div class="form-horizontal">
+            <h4>CustomeFeild</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.TableId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TableId, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TableId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ControlType, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ControlType, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ControlType, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ControlName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ControlName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ControlName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>*@
+
+ 
+        <label for="name"> Attribute </label>
+        @Html.TextBoxFor(model => model.ControlName, new { required = "required", @class = "form-control" })
+        <label for="name"> Table </label>
+        @Html.DropDownListFor(model => model.TableName, (SelectList)ViewBag.dataForDropDown, new { required = "required", @class = "form-control" })
+        <label for="name"> Control </label>
+        @Html.DropDownListFor(model => model.ControlType, (SelectList)ViewBag.dataForDropDowns, new { required = "required", @class = "form-control" })
+        <br />
+        <input type="submit" id="submit" , value="Create" class="btn-primary btn-lg" />
+    }
+    <div id="updateinfor"></div>
+    <div>
+        @*@Html.ActionLink("Back to List", "Index")*@
+        @Html.ActionLink("Back to List", "CustomfeildView")
+    </div>
+
+
+    @*<label id="lblName"></label>
+
+        <div id="txtbox" style="display:none">
+
+            <input type="text" name="value" />
+
+        </div>
+
+        <div id="radio" style="display:none">
+
+            <input type="radio" name="citizenship" />
+
+        </div>
+
+        <div id="chkbox" style="display:none">
+            <input type="checkbox" name="active" />
+        </div>
+
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $(document).ready(function () {
+                    $("#submit").click(function () {
+                        //console.log($("#ControlType").val());
+                        var strUser = ""
+                        $("#chkbox").hide();
+                        $("#radio").hide();
+                        $("#txtbox").hide();
+                        var strUser = $("#ControlType").val();
+                        if (strUser == "CheckBox") {
+                            document.getElementById('lblName').innerHTML = $("#ControlName").val();
+                            $("#chkbox").show();
+                        }
+                        else if (strUser == "RadioButton") {
+                            document.getElementById('lblName').innerHTML = $("#ControlName").val();
+                            $("#radio").show();
+                        }
+                        else if (strUser == "TextBox") {
+                            document.getElementById('lblName').innerHTML = $("#ControlName").val();
+                            $("#txtbox").show();
+                        }
+                    });
+                });
+            });
+        </script>*@

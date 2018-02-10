@@ -1,0 +1,42 @@
+﻿@model  opr.Models.Section 
+@{
+    /**/
+
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div>
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#first" aria-controls="first" role="tab" data-toggle="tab">Sections</a></li>
+        @*<li role="presentation"><a href="#second" aria-controls="second" role="tab" data-toggle="tab">example 2</a></li>*@
+        <li role="presentation"><a href="#third" aria-controls="second" role="tab" data-toggle="tab">Custom Fields</a></li>
+    </ul>
+
+    <div class="tab-content">
+
+        <div role="tabpanel" class="tab-pane active" id="first">
+            @Html.Partial("~/Views/Shared/PartialViews/_Sections.cshtml")
+        </div>
+
+
+        @*<div role="tabpanel" class="tab-pane" id="second">
+            @Html.Partial("~/Views/Shared/PartialViews/_Example2.cshtml",new opr.Models.DefControl())
+        </div>*@
+
+        <div role="tabpanel" class="tab-pane" id="third">
+            @Html.Partial("~/Views/Shared/PartialViews/_CustomFeilds.cshtml", new opr.Models.CustomeFeild())
+            @{ 
+
+                var customFieldsData = new opr.Models.oprEntities().CustomeFeilds.ToList();
+            }
+            @Html.Partial("~/Views/Sections/_CustomFeildView.cshtml", customFieldsData)
+        </div>
+    </div>
+    </div>
+
+
+
