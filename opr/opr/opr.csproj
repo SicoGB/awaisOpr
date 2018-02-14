@@ -257,6 +257,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="dbScripts\awaissql.txt" />
+    <Content Include="dbScripts\examsdatabasesqlscript.txt" />
     <Content Include="dbScripts\StyleSheet1.css" />
     <Content Include="dbScripts\wajahatsql.txt" />
     <Content Include="favicon.ico" />

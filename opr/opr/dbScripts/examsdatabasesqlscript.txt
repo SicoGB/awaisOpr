@@ -1,0 +1,1359 @@
+﻿USE [exams]
+GO
+/****** Object:  Table [dbo].[studentattendancetypes]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[studentattendancetypes](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[AttendanceName] [varchar](18) NOT NULL,
+	[Fine] [decimal](10, 0) NOT NULL,
+	[Code] [varchar](3) NOT NULL,
+ CONSTRAINT [PK__studenta__3214EC271EA48E88] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[smsusers]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[smsusers](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](100) NOT NULL,
+	[Fname] [varchar](100) NOT NULL,
+	[Email] [varchar](100) NOT NULL,
+	[UserName] [varchar](62) NOT NULL,
+	[Password] [varchar](128) NOT NULL,
+	[MobNo] [varchar](15) NOT NULL,
+	[Cnic] [varchar](15) NOT NULL,
+ CONSTRAINT [PK__smsusers__3214EC271BC821DD] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[smssubscription]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[smssubscription](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[UserID] [int] NOT NULL,
+	[UserType] [varchar](20) NOT NULL,
+	[DateSheet] [smallint] NOT NULL,
+	[MarkSheet] [smallint] NOT NULL,
+	[EntryBy] [int] NOT NULL,
+	[EntryDate] [datetime2](0) NOT NULL,
+	[LastEditedBy] [int] NOT NULL,
+	[LastEditedOn] [datetime2](0) NOT NULL,
+ CONSTRAINT [PK__smssubsc__3214EC2718EBB532] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[section]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[section](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[_name] [varchar](10) NOT NULL,
+	[LastEditedBy] [int] NOT NULL,
+	[UserID] [int] NOT NULL,
+	[LastEditedOn] [date] NOT NULL,
+ CONSTRAINT [PK__section__3214EC27160F4887] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[useractivity]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[useractivity](
+	[ID] [int] NOT NULL,
+	[UserID] [int] NOT NULL,
+	[RecordID] [int] NOT NULL,
+	[TableName] [varchar](150) NOT NULL,
+	[EntryDate] [datetime2](0) NOT NULL,
+	[Description] [varchar](5000) NOT NULL,
+	[FromIP] [varchar](200) NOT NULL,
+	[OtherWebClientDetail] [varchar](5000) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[subjects]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[subjects](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[SubjectName] [varchar](20) NOT NULL,
+	[TotalMarks] [float] NOT NULL,
+	[LastEditedBy] [int] NOT NULL,
+	[UserID] [int] NOT NULL,
+	[LastEditedOn] [date] NOT NULL,
+ CONSTRAINT [PK__subjects__3214EC272739D489] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[students]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[students](
+	[ID] [int] NOT NULL,
+	[Name] [varchar](300) NOT NULL,
+	[FName] [varchar](300) NOT NULL,
+	[DOB] [date] NOT NULL,
+	[PostalAddress] [varchar](500) NOT NULL,
+	[Phone] [varchar](16) NOT NULL,
+	[Mobile] [varchar](15) NOT NULL,
+	[GuardianPhone] [varchar](15) NOT NULL,
+	[LastEditedBy] [int] NOT NULL,
+	[LastEditedOn] [datetime2](0) NOT NULL,
+	[UserID] [int] NOT NULL,
+	[Gender] [varchar](10) NOT NULL,
+	[img] [varchar](500) NULL,
+	[EntryDate] [datetime2](0) NOT NULL,
+	[FatherCNIC] [varchar](20) NOT NULL,
+	[IsActive] [smallint] NOT NULL,
+	[IsBanned] [smallint] NOT NULL,
+	[RegistrationNo] [int] NOT NULL,
+	[IsUserAccountActive] [smallint] NOT NULL,
+	[UserName] [varchar](32) NOT NULL,
+	[Password] [varchar](1000) NOT NULL,
+	[SchoolName] [varchar](150) NULL,
+	[CenterName] [varchar](150) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[school]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[school](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](300) NOT NULL,
+	[Address] [varchar](300) NOT NULL,
+	[Contact] [varchar](14) NOT NULL,
+	[Mobile] [varchar](12) NOT NULL,
+	[Email] [varchar](300) NOT NULL,
+	[Website] [varchar](300) NOT NULL,
+	[Princepal] [varchar](300) NOT NULL,
+	[UserName] [varchar](30) NOT NULL,
+	[Pasword] [varchar](30) NOT NULL,
+	[LastEditedBy] [int] NOT NULL,
+	[UserID] [int] NOT NULL,
+	[LastEditedOn] [date] NOT NULL,
+	[IsActive] [smallint] NOT NULL,
+	[IsExpired] [smallint] NOT NULL,
+	[Logo] [varchar](300) NOT NULL,
+ CONSTRAINT [PK__school__3214EC277C4F7684] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[schoolleaveschedule]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[schoolleaveschedule](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[date] [date] NOT NULL,
+	[holidayName] [varchar](500) NOT NULL,
+ CONSTRAINT [PK__schoolle__3214EC277F2BE32F] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[packages]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[packages](
+	[ID] [int] NOT NULL,
+	[PackageName] [varchar](100) NOT NULL,
+	[NoOfMessages] [int] NOT NULL,
+	[Validity] [int] NOT NULL,
+	[MaskingForNetworks] [varchar](1000) NOT NULL,
+	[Price] [decimal](10, 0) NOT NULL,
+	[type] [varchar](50) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[packagepurchases]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[packagepurchases](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[UserID] [int] NOT NULL,
+	[PakckageID] [int] NOT NULL,
+	[PaymentID] [int] NOT NULL,
+	[ExpiryDate] [datetime2](0) NOT NULL,
+	[ClosingBalance] [int] NOT NULL,
+	[UserType] [varchar](15) NOT NULL,
+ CONSTRAINT [PK__packagep__3214EC2770DDC3D8] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[orders]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[orders](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[UserID] [int] NOT NULL,
+	[PackageID] [int] NOT NULL,
+	[UserType] [varchar](30) NOT NULL,
+	[OrderDate] [datetime2](0) NOT NULL,
+ CONSTRAINT [PK__orders__3214EC276E01572D] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[offlinemessages]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[offlinemessages](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[SenderID] [int] NOT NULL,
+	[SenderType] [varchar](20) NOT NULL,
+	[ToID] [int] NOT NULL,
+	[ToType] [varchar](20) NOT NULL,
+	[EntryDate] [datetime2](0) NOT NULL,
+	[MessageText] [varchar](500) NOT NULL,
+	[Unread] [int] NOT NULL,
+	[ReadDate] [datetime2](0) NOT NULL,
+	[ReadByID] [int] NOT NULL,
+	[ReadByType] [varchar](20) NOT NULL,
+ CONSTRAINT [PK__offlinem__3214EC276B24EA82] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[notifications]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[notifications](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[NotificationText] [varchar](500) NOT NULL,
+	[EntryDate] [datetime2](0) NOT NULL,
+	[Unread] [smallint] NOT NULL,
+	[ReadDate] [datetime2](0) NOT NULL,
+	[ReadByUser] [int] NOT NULL,
+	[ToUserID] [int] NOT NULL,
+	[ToUserType] [varchar](20) NOT NULL,
+	[Type] [varchar](15) NOT NULL,
+ CONSTRAINT [PK__notifica__3214EC2768487DD7] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[myclass]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[myclass](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[_name] [varchar](10) NOT NULL,
+	[LastEditedBy] [int] NOT NULL,
+	[UserID] [int] NOT NULL,
+	[LastEditedOn] [int] NOT NULL,
+ CONSTRAINT [PK__myclass__3214EC27656C112C] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[messagerecords]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[messagerecords](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[UserID] [int] NOT NULL,
+	[Message] [varchar](5000) NOT NULL,
+	[SentBy] [int] NOT NULL,
+	[EntryDate] [datetime2](0) NOT NULL,
+	[UserType] [varchar](15) NOT NULL,
+ CONSTRAINT [PK__messager__3214EC27628FA481] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[groups]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[groups](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[_name] [varchar](20) NOT NULL,
+	[LastEditedBy] [int] NOT NULL,
+	[UserID] [int] NOT NULL,
+	[LastEditedOn] [int] NOT NULL,
+ CONSTRAINT [PK__groups__3214EC275FB337D6] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[extraattributetypes]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[extraattributetypes](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[AttributeTypeName] [varchar](150) NULL,
+	[Description] [varchar](500) NULL,
+ CONSTRAINT [PK__extraatt__3214EC0759FA5E80] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[appforms]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[appforms](
+	[ID] [int] NOT NULL,
+	[FormName] [varchar](100) NOT NULL,
+	[Description] [varchar](200) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[demorequests]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[demorequests](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[FullName] [varchar](80) NOT NULL,
+	[email] [varchar](80) NOT NULL,
+	[phone] [varchar](15) NOT NULL,
+	[InstitutionName] [varchar](150) NOT NULL,
+	[InstitutionAddress] [varchar](150) NOT NULL,
+	[Message] [varchar](300) NOT NULL,
+	[IsActive] [smallint] NOT NULL,
+	[IsBanned] [smallint] NOT NULL,
+	[EntryDate] [datetime2](0) NOT NULL,
+	[IsDeleted] [smallint] NOT NULL,
+ CONSTRAINT [PK__demorequ__3214EC274BAC3F29] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[contactusmessages]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[contactusmessages](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](100) NOT NULL,
+	[Email] [varchar](100) NOT NULL,
+	[Phone] [varchar](20) NOT NULL,
+	[Message] [varchar](max) NOT NULL,
+	[EntryDate] [date] NOT NULL,
+ CONSTRAINT [PK__contactu__3214EC2748CFD27E] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[campus]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[campus](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[_name] [varchar](20) NOT NULL,
+	[LastEditedBy] [int] NOT NULL,
+	[LastEditedOn] [date] NOT NULL,
+	[UserID] [int] NOT NULL,
+ CONSTRAINT [PK__campus__3214EC274316F928] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[usertypes]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[usertypes](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[UserTypeName] [varchar](50) NOT NULL,
+	[Descrption] [varchar](300) NOT NULL,
+ CONSTRAINT [PK__usertype__3214EC272FCF1A8A] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[users]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[users](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[UserName] [varchar](100) NOT NULL,
+	[Password] [varchar](32) NOT NULL,
+	[EntryDate] [datetime2](0) NOT NULL,
+	[LastLoginDate] [datetime2](0) NOT NULL,
+	[LastPasswordChange] [datetime2](0) NOT NULL,
+	[IsActive] [smallint] NOT NULL,
+	[Email] [varchar](110) NULL,
+	[RoleID] [int] NOT NULL,
+	[ProfilePicture] [varchar](300) NOT NULL,
+ CONSTRAINT [PK__users__3214EC272CF2ADDF] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[authentications]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[authentications](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[RoleID] [int] NOT NULL,
+	[FormID] [int] NOT NULL,
+	[View] [smallint] NOT NULL,
+	[AddNew] [smallint] NOT NULL,
+	[Edit] [smallint] NOT NULL,
+	[DeleteIt] [smallint] NOT NULL,
+ CONSTRAINT [PK__authenti__3214EC2745F365D3] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[extraattributes]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[extraattributes](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[TableName] [varchar](10) NULL,
+	[AtrributeName] [varchar](10) NULL,
+	[AttributeLabel] [varchar](10) NULL,
+	[DisplayOrder] [int] NULL,
+	[AttributeTypeId] [int] NULL,
+ CONSTRAINT [PK__extraatt__3214EC075441852A] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[exams]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[exams](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[ExamName] [varchar](150) NOT NULL,
+	[LastEditedBy] [int] NOT NULL,
+	[UserID] [int] NOT NULL,
+	[LastEditedOn] [int] NOT NULL,
+	[examYear] [int] NOT NULL,
+	[examMonth] [varchar](20) NOT NULL,
+	[passPercentage] [int] NOT NULL,
+	[Aplus] [int] NOT NULL,
+	[B] [int] NOT NULL,
+	[C] [int] NOT NULL,
+	[D] [int] NOT NULL,
+	[E] [int] NOT NULL,
+	[F] [int] NOT NULL,
+	[A] [int] NOT NULL,
+	[SchoolID] [int] NOT NULL,
+	[IsActive] [smallint] NOT NULL,
+	[IsPublished] [smallint] NOT NULL,
+	[IsCurrentExam] [smallint] NOT NULL,
+ CONSTRAINT [PK__exams__3214EC275165187F] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[registrations]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[registrations](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[StudentID] [int] NOT NULL,
+	[SchoolID] [int] NOT NULL,
+	[CampusID] [int] NOT NULL,
+	[ClassID] [int] NOT NULL,
+	[GroupID] [int] NOT NULL,
+	[RollNo] [int] NOT NULL,
+	[Session] [int] NOT NULL,
+	[SectionID] [int] NOT NULL,
+	[UserID] [int] NOT NULL,
+	[EntryDate] [datetime2](0) NOT NULL,
+	[LastEditedBy] [int] NOT NULL,
+	[LastEditedOn] [datetime2](0) NOT NULL,
+	[IsExpelled] [smallint] NOT NULL,
+ CONSTRAINT [PK__registra__3214EC2776969D2E] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[school_class_subjects]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[school_class_subjects](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[SchoolID] [int] NOT NULL,
+	[ClassID] [int] NOT NULL,
+	[SubjectID] [int] NOT NULL,
+ CONSTRAINT [PK__school_c__3214EC271332DBDC] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[school_class_section]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[school_class_section](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[SchoolID] [int] NOT NULL,
+	[ClassID] [int] NOT NULL,
+	[SectionID] [int] NOT NULL,
+ CONSTRAINT [PK__school_c__3214EC2710566F31] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[school_class_group_subjects]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[school_class_group_subjects](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[SchoolID] [int] NOT NULL,
+	[ClassID] [int] NOT NULL,
+	[GroupID] [int] NOT NULL,
+	[SubjectID] [int] NOT NULL,
+ CONSTRAINT [PK__school_c__3214EC270D7A0286] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[school_class_group_section]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[school_class_group_section](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[SchoolID] [int] NOT NULL,
+	[ClassID] [int] NOT NULL,
+	[GroupID] [int] NOT NULL,
+	[SectionID] [int] NOT NULL,
+ CONSTRAINT [PK__school_c__3214EC270A9D95DB] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[school_class_group]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[school_class_group](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[SchoolID] [int] NOT NULL,
+	[ClassID] [int] NOT NULL,
+	[GroupID] [int] NOT NULL,
+ CONSTRAINT [PK__school_c__3214EC2707C12930] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[school_class]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[school_class](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[SchoolID] [int] NOT NULL,
+	[ClassID] [int] NOT NULL,
+ CONSTRAINT [PK__school_c__3214EC2704E4BC85] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[school_campus]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[school_campus](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[SchoolID] [int] NOT NULL,
+	[CampusID] [int] NOT NULL,
+ CONSTRAINT [PK_school_campus] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[studentattendences]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[studentattendences](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[AttendanceDate] [datetime2](0) NOT NULL,
+	[AdmissionID] [int] NOT NULL,
+	[FineAmount] [decimal](10, 0) NOT NULL,
+	[AttendanceTypeID] [int] NOT NULL,
+	[UserID] [int] NOT NULL,
+	[sendmesssage] [smallint] NULL,
+	[manaual] [smallint] NULL,
+	[UserType] [varchar](20) NOT NULL,
+ CONSTRAINT [PK__studenta__3214EC272180FB33] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[schoolusers]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[schoolusers](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[SchoolID] [int] NOT NULL,
+	[UserID] [int] NOT NULL,
+ CONSTRAINT [PK__schoolus__3214EC2702084FDA] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[results]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[results](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[regID] [int] NOT NULL,
+	[exmID] [int] NOT NULL,
+	[subID] [int] NOT NULL,
+	[Marks] [float] NOT NULL,
+	[LastEditedBy] [int] NOT NULL,
+	[UserID] [int] NOT NULL,
+	[LastEditedOn] [date] NOT NULL,
+ CONSTRAINT [PK__results__3214EC27797309D9] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[extraattributesvaluesfortables]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[extraattributesvaluesfortables](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[ExtraAttributeId] [int] NOT NULL,
+	[Value] [varchar](1000) NOT NULL,
+	[RecordId] [int] NOT NULL,
+	[TableName] [varchar](150) NOT NULL,
+ CONSTRAINT [PK__extraatt__3214EC27571DF1D5] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[datesheet]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[datesheet](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[subID] [int] NOT NULL,
+	[sclID] [int] NOT NULL,
+	[cmpID] [int] NOT NULL,
+	[clsID] [int] NOT NULL,
+	[secID] [int] NOT NULL,
+	[exmID] [int] NOT NULL,
+	[ExamDate] [date] NOT NULL,
+	[LastEditedBy] [int] NOT NULL,
+	[UserID] [int] NOT NULL,
+	[LastEditedOn] [date] NOT NULL,
+	[from] [varchar](20) NOT NULL,
+	[to] [varchar](20) NOT NULL,
+	[TotalMarks] [decimal](10, 0) NOT NULL,
+	[PassMarks] [decimal](10, 0) NOT NULL,
+	[grpID] [int] NOT NULL,
+ CONSTRAINT [PK__dateshee__3214EC274E88ABD4] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[extraattributevalues]    Script Date: 02/14/2018 00:01:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[extraattributevalues](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[AttributeId] [int] NULL,
+	[AttributeValue] [varchar](max) NULL,
+ CONSTRAINT [PK__extraatt__3214EC075CD6CB2B] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Default [DF__exams__IsActive__07F6335A]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[exams] ADD  CONSTRAINT [DF__exams__IsActive__07F6335A]  DEFAULT ('1') FOR [IsActive]
+GO
+/****** Object:  Default [DF__exams__IsPublish__08EA5793]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[exams] ADD  CONSTRAINT [DF__exams__IsPublish__08EA5793]  DEFAULT ('0') FOR [IsPublished]
+GO
+/****** Object:  Default [DF__exams__IsCurrent__09DE7BCC]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[exams] ADD  CONSTRAINT [DF__exams__IsCurrent__09DE7BCC]  DEFAULT ('1') FOR [IsCurrentExam]
+GO
+/****** Object:  Default [DF__extraattr__Table__0BC6C43E]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[extraattributes] ADD  CONSTRAINT [DF__extraattr__Table__0BC6C43E]  DEFAULT (NULL) FOR [TableName]
+GO
+/****** Object:  Default [DF__extraattr__Atrri__0CBAE877]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[extraattributes] ADD  CONSTRAINT [DF__extraattr__Atrri__0CBAE877]  DEFAULT (NULL) FOR [AtrributeName]
+GO
+/****** Object:  Default [DF__extraattr__Attri__0DAF0CB0]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[extraattributes] ADD  CONSTRAINT [DF__extraattr__Attri__0DAF0CB0]  DEFAULT (NULL) FOR [AttributeLabel]
+GO
+/****** Object:  Default [DF__extraattr__Displ__0EA330E9]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[extraattributes] ADD  CONSTRAINT [DF__extraattr__Displ__0EA330E9]  DEFAULT (NULL) FOR [DisplayOrder]
+GO
+/****** Object:  Default [DF__extraattr__Attri__0F975522]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[extraattributes] ADD  CONSTRAINT [DF__extraattr__Attri__0F975522]  DEFAULT (NULL) FOR [AttributeTypeId]
+GO
+/****** Object:  Default [DF__extraattr__Attri__1273C1CD]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[extraattributetypes] ADD  CONSTRAINT [DF__extraattr__Attri__1273C1CD]  DEFAULT (NULL) FOR [AttributeTypeName]
+GO
+/****** Object:  Default [DF__extraattr__Descr__1367E606]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[extraattributetypes] ADD  CONSTRAINT [DF__extraattr__Descr__1367E606]  DEFAULT (NULL) FOR [Description]
+GO
+/****** Object:  Default [DF__extraattr__Attri__15502E78]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[extraattributevalues] ADD  CONSTRAINT [DF__extraattr__Attri__15502E78]  DEFAULT (NULL) FOR [AttributeId]
+GO
+/****** Object:  Default [DF__notificat__Unrea__1BFD2C07]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[notifications] ADD  CONSTRAINT [DF__notificat__Unrea__1BFD2C07]  DEFAULT ('1') FOR [Unread]
+GO
+/****** Object:  Default [DF__registrat__IsExp__21B6055D]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[registrations] ADD  CONSTRAINT [DF__registrat__IsExp__21B6055D]  DEFAULT ('0') FOR [IsExpelled]
+GO
+/****** Object:  Default [DF__school__IsActive__7E6CC920]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[school] ADD  CONSTRAINT [DF__school__IsActive__7E6CC920]  DEFAULT ('1') FOR [IsActive]
+GO
+/****** Object:  Default [DF__school__IsExpire__7F60ED59]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[school] ADD  CONSTRAINT [DF__school__IsExpire__7F60ED59]  DEFAULT ('0') FOR [IsExpired]
+GO
+/****** Object:  Default [DF__school__Logo__00551192]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[school] ADD  CONSTRAINT [DF__school__Logo__00551192]  DEFAULT ('/Images/user.png') FOR [Logo]
+GO
+/****** Object:  Default [DF__studentat__sendm__32E0915F]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[studentattendences] ADD  CONSTRAINT [DF__studentat__sendm__32E0915F]  DEFAULT (NULL) FOR [sendmesssage]
+GO
+/****** Object:  Default [DF__studentat__manau__33D4B598]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[studentattendences] ADD  CONSTRAINT [DF__studentat__manau__33D4B598]  DEFAULT (NULL) FOR [manaual]
+GO
+/****** Object:  Default [DF__students__img__35BCFE0A]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[students] ADD  DEFAULT (NULL) FOR [img]
+GO
+/****** Object:  Default [DF__students__IsActi__36B12243]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[students] ADD  DEFAULT ('1') FOR [IsActive]
+GO
+/****** Object:  Default [DF__students__IsBann__37A5467C]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[students] ADD  DEFAULT ('0') FOR [IsBanned]
+GO
+/****** Object:  Default [DF__students__School__38996AB5]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[students] ADD  DEFAULT (NULL) FOR [SchoolName]
+GO
+/****** Object:  Default [DF__students__Center__398D8EEE]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[students] ADD  DEFAULT (NULL) FOR [CenterName]
+GO
+/****** Object:  Default [DF__users__Email__3D5E1FD2]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[users] ADD  CONSTRAINT [DF__users__Email__3D5E1FD2]  DEFAULT (NULL) FOR [Email]
+GO
+/****** Object:  ForeignKey [Forms_Authentication]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[authentications]  WITH CHECK ADD  CONSTRAINT [Forms_Authentication] FOREIGN KEY([FormID])
+REFERENCES [dbo].[appforms] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[authentications] CHECK CONSTRAINT [Forms_Authentication]
+GO
+/****** Object:  ForeignKey [UserTypes_Authentication]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[authentications]  WITH CHECK ADD  CONSTRAINT [UserTypes_Authentication] FOREIGN KEY([RoleID])
+REFERENCES [dbo].[usertypes] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[authentications] CHECK CONSTRAINT [UserTypes_Authentication]
+GO
+/****** Object:  ForeignKey [Campus_Datesheet]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[datesheet]  WITH CHECK ADD  CONSTRAINT [Campus_Datesheet] FOREIGN KEY([cmpID])
+REFERENCES [dbo].[campus] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[datesheet] CHECK CONSTRAINT [Campus_Datesheet]
+GO
+/****** Object:  ForeignKey [Class_Datesheet]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[datesheet]  WITH CHECK ADD  CONSTRAINT [Class_Datesheet] FOREIGN KEY([clsID])
+REFERENCES [dbo].[myclass] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[datesheet] CHECK CONSTRAINT [Class_Datesheet]
+GO
+/****** Object:  ForeignKey [Exams_Datesheet]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[datesheet]  WITH CHECK ADD  CONSTRAINT [Exams_Datesheet] FOREIGN KEY([exmID])
+REFERENCES [dbo].[exams] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[datesheet] CHECK CONSTRAINT [Exams_Datesheet]
+GO
+/****** Object:  ForeignKey [Group_Datesheet]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[datesheet]  WITH CHECK ADD  CONSTRAINT [Group_Datesheet] FOREIGN KEY([grpID])
+REFERENCES [dbo].[groups] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[datesheet] CHECK CONSTRAINT [Group_Datesheet]
+GO
+/****** Object:  ForeignKey [School_Datesheet]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[datesheet]  WITH CHECK ADD  CONSTRAINT [School_Datesheet] FOREIGN KEY([sclID])
+REFERENCES [dbo].[school] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[datesheet] CHECK CONSTRAINT [School_Datesheet]
+GO
+/****** Object:  ForeignKey [Section_Datesheet]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[datesheet]  WITH CHECK ADD  CONSTRAINT [Section_Datesheet] FOREIGN KEY([secID])
+REFERENCES [dbo].[section] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[datesheet] CHECK CONSTRAINT [Section_Datesheet]
+GO
+/****** Object:  ForeignKey [Subject_Datesheet]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[datesheet]  WITH CHECK ADD  CONSTRAINT [Subject_Datesheet] FOREIGN KEY([subID])
+REFERENCES [dbo].[subjects] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[datesheet] CHECK CONSTRAINT [Subject_Datesheet]
+GO
+/****** Object:  ForeignKey [school_exmams]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[exams]  WITH CHECK ADD  CONSTRAINT [school_exmams] FOREIGN KEY([SchoolID])
+REFERENCES [dbo].[school] ([ID])
+GO
+ALTER TABLE [dbo].[exams] CHECK CONSTRAINT [school_exmams]
+GO
+/****** Object:  ForeignKey [extraAttributeTypes_Attributes]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[extraattributes]  WITH CHECK ADD  CONSTRAINT [extraAttributeTypes_Attributes] FOREIGN KEY([AttributeTypeId])
+REFERENCES [dbo].[extraattributetypes] ([Id])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [dbo].[extraattributes] CHECK CONSTRAINT [extraAttributeTypes_Attributes]
+GO
+/****** Object:  ForeignKey [extraattributesvaluesfortables_ibfk_1]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[extraattributesvaluesfortables]  WITH CHECK ADD  CONSTRAINT [extraattributesvaluesfortables_ibfk_1] FOREIGN KEY([ExtraAttributeId])
+REFERENCES [dbo].[extraattributes] ([Id])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [dbo].[extraattributesvaluesfortables] CHECK CONSTRAINT [extraattributesvaluesfortables_ibfk_1]
+GO
+/****** Object:  ForeignKey [Attribute_Values]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[extraattributevalues]  WITH CHECK ADD  CONSTRAINT [Attribute_Values] FOREIGN KEY([AttributeId])
+REFERENCES [dbo].[extraattributes] ([Id])
+ON UPDATE CASCADE
+GO
+ALTER TABLE [dbo].[extraattributevalues] CHECK CONSTRAINT [Attribute_Values]
+GO
+/****** Object:  ForeignKey [Campus_Registration]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[registrations]  WITH CHECK ADD  CONSTRAINT [Campus_Registration] FOREIGN KEY([CampusID])
+REFERENCES [dbo].[campus] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[registrations] CHECK CONSTRAINT [Campus_Registration]
+GO
+/****** Object:  ForeignKey [Class_Registration]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[registrations]  WITH CHECK ADD  CONSTRAINT [Class_Registration] FOREIGN KEY([ClassID])
+REFERENCES [dbo].[myclass] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[registrations] CHECK CONSTRAINT [Class_Registration]
+GO
+/****** Object:  ForeignKey [Group_Registration]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[registrations]  WITH CHECK ADD  CONSTRAINT [Group_Registration] FOREIGN KEY([GroupID])
+REFERENCES [dbo].[groups] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[registrations] CHECK CONSTRAINT [Group_Registration]
+GO
+/****** Object:  ForeignKey [School_Registration]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[registrations]  WITH CHECK ADD  CONSTRAINT [School_Registration] FOREIGN KEY([SchoolID])
+REFERENCES [dbo].[school] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[registrations] CHECK CONSTRAINT [School_Registration]
+GO
+/****** Object:  ForeignKey [Section_Registration]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[registrations]  WITH CHECK ADD  CONSTRAINT [Section_Registration] FOREIGN KEY([SectionID])
+REFERENCES [dbo].[section] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[registrations] CHECK CONSTRAINT [Section_Registration]
+GO
+/****** Object:  ForeignKey [Student_Registration]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[registrations]  WITH CHECK ADD  CONSTRAINT [Student_Registration] FOREIGN KEY([StudentID])
+REFERENCES [dbo].[students] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[registrations] CHECK CONSTRAINT [Student_Registration]
+GO
+/****** Object:  ForeignKey [Exams_Result]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[results]  WITH CHECK ADD  CONSTRAINT [Exams_Result] FOREIGN KEY([exmID])
+REFERENCES [dbo].[exams] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[results] CHECK CONSTRAINT [Exams_Result]
+GO
+/****** Object:  ForeignKey [Registration_Result]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[results]  WITH CHECK ADD  CONSTRAINT [Registration_Result] FOREIGN KEY([regID])
+REFERENCES [dbo].[registrations] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[results] CHECK CONSTRAINT [Registration_Result]
+GO
+/****** Object:  ForeignKey [Subject_Results]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[results]  WITH CHECK ADD  CONSTRAINT [Subject_Results] FOREIGN KEY([subID])
+REFERENCES [dbo].[subjects] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[results] CHECK CONSTRAINT [Subject_Results]
+GO
+/****** Object:  ForeignKey [Campus_School_Campus]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[school_campus]  WITH CHECK ADD  CONSTRAINT [Campus_School_Campus] FOREIGN KEY([CampusID])
+REFERENCES [dbo].[campus] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[school_campus] CHECK CONSTRAINT [Campus_School_Campus]
+GO
+/****** Object:  ForeignKey [School_School_Campus]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[school_campus]  WITH CHECK ADD  CONSTRAINT [School_School_Campus] FOREIGN KEY([SchoolID])
+REFERENCES [dbo].[school] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[school_campus] CHECK CONSTRAINT [School_School_Campus]
+GO
+/****** Object:  ForeignKey [Class_School_Class]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[school_class]  WITH CHECK ADD  CONSTRAINT [Class_School_Class] FOREIGN KEY([ClassID])
+REFERENCES [dbo].[myclass] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[school_class] CHECK CONSTRAINT [Class_School_Class]
+GO
+/****** Object:  ForeignKey [School_School_Class]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[school_class]  WITH CHECK ADD  CONSTRAINT [School_School_Class] FOREIGN KEY([SchoolID])
+REFERENCES [dbo].[school] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[school_class] CHECK CONSTRAINT [School_School_Class]
+GO
+/****** Object:  ForeignKey [class_school_class_group]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[school_class_group]  WITH CHECK ADD  CONSTRAINT [class_school_class_group] FOREIGN KEY([ClassID])
+REFERENCES [dbo].[myclass] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[school_class_group] CHECK CONSTRAINT [class_school_class_group]
+GO
+/****** Object:  ForeignKey [group_school_class_group]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[school_class_group]  WITH CHECK ADD  CONSTRAINT [group_school_class_group] FOREIGN KEY([GroupID])
+REFERENCES [dbo].[groups] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[school_class_group] CHECK CONSTRAINT [group_school_class_group]
+GO
+/****** Object:  ForeignKey [School_school_class_group]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[school_class_group]  WITH CHECK ADD  CONSTRAINT [School_school_class_group] FOREIGN KEY([SchoolID])
+REFERENCES [dbo].[school] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[school_class_group] CHECK CONSTRAINT [School_school_class_group]
+GO
+/****** Object:  ForeignKey [class_school_class_group_section]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[school_class_group_section]  WITH CHECK ADD  CONSTRAINT [class_school_class_group_section] FOREIGN KEY([ClassID])
+REFERENCES [dbo].[myclass] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[school_class_group_section] CHECK CONSTRAINT [class_school_class_group_section]
+GO
+/****** Object:  ForeignKey [group_school_class_group_section]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[school_class_group_section]  WITH CHECK ADD  CONSTRAINT [group_school_class_group_section] FOREIGN KEY([GroupID])
+REFERENCES [dbo].[groups] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[school_class_group_section] CHECK CONSTRAINT [group_school_class_group_section]
+GO
+/****** Object:  ForeignKey [school_school_class_group_section]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[school_class_group_section]  WITH CHECK ADD  CONSTRAINT [school_school_class_group_section] FOREIGN KEY([SchoolID])
+REFERENCES [dbo].[school] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[school_class_group_section] CHECK CONSTRAINT [school_school_class_group_section]
+GO
+/****** Object:  ForeignKey [section_school_class_group_section]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[school_class_group_section]  WITH CHECK ADD  CONSTRAINT [section_school_class_group_section] FOREIGN KEY([SectionID])
+REFERENCES [dbo].[section] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[school_class_group_section] CHECK CONSTRAINT [section_school_class_group_section]
+GO
+/****** Object:  ForeignKey [class_school_class_group_subjects]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[school_class_group_subjects]  WITH CHECK ADD  CONSTRAINT [class_school_class_group_subjects] FOREIGN KEY([ClassID])
+REFERENCES [dbo].[myclass] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[school_class_group_subjects] CHECK CONSTRAINT [class_school_class_group_subjects]
+GO
+/****** Object:  ForeignKey [group_school_class_group_subjects]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[school_class_group_subjects]  WITH CHECK ADD  CONSTRAINT [group_school_class_group_subjects] FOREIGN KEY([GroupID])
+REFERENCES [dbo].[groups] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[school_class_group_subjects] CHECK CONSTRAINT [group_school_class_group_subjects]
+GO
+/****** Object:  ForeignKey [school_school_class_group_subjects]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[school_class_group_subjects]  WITH CHECK ADD  CONSTRAINT [school_school_class_group_subjects] FOREIGN KEY([SchoolID])
+REFERENCES [dbo].[school] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[school_class_group_subjects] CHECK CONSTRAINT [school_school_class_group_subjects]
+GO
+/****** Object:  ForeignKey [subject_school_class_group_subjects]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[school_class_group_subjects]  WITH CHECK ADD  CONSTRAINT [subject_school_class_group_subjects] FOREIGN KEY([SubjectID])
+REFERENCES [dbo].[subjects] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[school_class_group_subjects] CHECK CONSTRAINT [subject_school_class_group_subjects]
+GO
+/****** Object:  ForeignKey [class_school_class_section]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[school_class_section]  WITH CHECK ADD  CONSTRAINT [class_school_class_section] FOREIGN KEY([ClassID])
+REFERENCES [dbo].[myclass] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[school_class_section] CHECK CONSTRAINT [class_school_class_section]
+GO
+/****** Object:  ForeignKey [school_school_class_section]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[school_class_section]  WITH CHECK ADD  CONSTRAINT [school_school_class_section] FOREIGN KEY([SchoolID])
+REFERENCES [dbo].[school] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[school_class_section] CHECK CONSTRAINT [school_school_class_section]
+GO
+/****** Object:  ForeignKey [section_school_class_section]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[school_class_section]  WITH CHECK ADD  CONSTRAINT [section_school_class_section] FOREIGN KEY([SectionID])
+REFERENCES [dbo].[section] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[school_class_section] CHECK CONSTRAINT [section_school_class_section]
+GO
+/****** Object:  ForeignKey [class_school_class_subjects]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[school_class_subjects]  WITH CHECK ADD  CONSTRAINT [class_school_class_subjects] FOREIGN KEY([ClassID])
+REFERENCES [dbo].[myclass] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[school_class_subjects] CHECK CONSTRAINT [class_school_class_subjects]
+GO
+/****** Object:  ForeignKey [school_school_class_subjects]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[school_class_subjects]  WITH CHECK ADD  CONSTRAINT [school_school_class_subjects] FOREIGN KEY([SchoolID])
+REFERENCES [dbo].[school] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[school_class_subjects] CHECK CONSTRAINT [school_school_class_subjects]
+GO
+/****** Object:  ForeignKey [subjects_school_class_subjects]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[school_class_subjects]  WITH CHECK ADD  CONSTRAINT [subjects_school_class_subjects] FOREIGN KEY([SubjectID])
+REFERENCES [dbo].[subjects] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[school_class_subjects] CHECK CONSTRAINT [subjects_school_class_subjects]
+GO
+/****** Object:  ForeignKey [schoolusers_ibfk_1]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[schoolusers]  WITH CHECK ADD  CONSTRAINT [schoolusers_ibfk_1] FOREIGN KEY([SchoolID])
+REFERENCES [dbo].[school] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[schoolusers] CHECK CONSTRAINT [schoolusers_ibfk_1]
+GO
+/****** Object:  ForeignKey [schoolusers_ibfk_2]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[schoolusers]  WITH CHECK ADD  CONSTRAINT [schoolusers_ibfk_2] FOREIGN KEY([UserID])
+REFERENCES [dbo].[users] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[schoolusers] CHECK CONSTRAINT [schoolusers_ibfk_2]
+GO
+/****** Object:  ForeignKey [studentattendences_ibfk_1]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[studentattendences]  WITH CHECK ADD  CONSTRAINT [studentattendences_ibfk_1] FOREIGN KEY([AdmissionID])
+REFERENCES [dbo].[registrations] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[studentattendences] CHECK CONSTRAINT [studentattendences_ibfk_1]
+GO
+/****** Object:  ForeignKey [studentattendences_ibfk_2]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[studentattendences]  WITH CHECK ADD  CONSTRAINT [studentattendences_ibfk_2] FOREIGN KEY([AttendanceTypeID])
+REFERENCES [dbo].[studentattendancetypes] ([ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[studentattendences] CHECK CONSTRAINT [studentattendences_ibfk_2]
+GO
+/****** Object:  ForeignKey [Usertypes_Users]    Script Date: 02/14/2018 00:01:22 ******/
+ALTER TABLE [dbo].[users]  WITH CHECK ADD  CONSTRAINT [Usertypes_Users] FOREIGN KEY([RoleID])
+REFERENCES [dbo].[usertypes] ([ID])
+GO
+ALTER TABLE [dbo].[users] CHECK CONSTRAINT [Usertypes_Users]
+GO
