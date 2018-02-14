@@ -28,6 +28,44 @@
           <Property Name="TableId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TableName" Type="varchar" MaxLength="50" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\AWAIS\SOURCE\REPOS\AWAISOPR\OPR\OPR\APP_DATA\ASPNET-OPR-20180131100631.MDF.dbo.school' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="school">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Address" />
+            <PropertyRef Name="Contact" />
+            <PropertyRef Name="Mobile" />
+            <PropertyRef Name="Email" />
+            <PropertyRef Name="Website" />
+            <PropertyRef Name="Princepal" />
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="Pasword" />
+            <PropertyRef Name="LastEditedBy" />
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="LastEditedOn" />
+            <PropertyRef Name="IsActive" />
+            <PropertyRef Name="IsExpired" />
+            <PropertyRef Name="Logo" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="Contact" Type="varchar" MaxLength="14" Nullable="false" />
+          <Property Name="Mobile" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="Website" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="Princepal" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Pasword" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="LastEditedBy" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="LastEditedOn" Type="date" Nullable="false" />
+          <Property Name="IsActive" Type="smallint" Nullable="false" />
+          <Property Name="IsExpired" Type="smallint" Nullable="false" />
+          <Property Name="Logo" Type="varchar" MaxLength="300" Nullable="false" />
+        </EntityType>
         <EntityType Name="Sections">
           <Key>
             <PropertyRef Name="Id" />
@@ -48,6 +86,26 @@
           <EntitySet Name="DefControl" EntityType="Self.DefControl" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DefTable" EntityType="Self.DefTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sections" EntityType="Self.Sections" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="school" EntityType="Self.school" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [school].[ID] AS [ID], 
+    [school].[Name] AS [Name], 
+    [school].[Address] AS [Address], 
+    [school].[Contact] AS [Contact], 
+    [school].[Mobile] AS [Mobile], 
+    [school].[Email] AS [Email], 
+    [school].[Website] AS [Website], 
+    [school].[Princepal] AS [Princepal], 
+    [school].[UserName] AS [UserName], 
+    [school].[Pasword] AS [Pasword], 
+    [school].[LastEditedBy] AS [LastEditedBy], 
+    [school].[UserID] AS [UserID], 
+    [school].[LastEditedOn] AS [LastEditedOn], 
+    [school].[IsActive] AS [IsActive], 
+    [school].[IsExpired] AS [IsExpired], 
+    [school].[Logo] AS [Logo]
+    FROM [dbo].[school] AS [school]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -73,6 +131,7 @@
           <EntitySet Name="DefTables" EntityType="Model.DefTable" />
           <EntitySet Name="DefControls" EntityType="Model.DefControl" />
           <EntitySet Name="CustomeFeilds" EntityType="Model.CustomeFeild" />
+          <EntitySet Name="schools" EntityType="Model.school" />
         </EntityContainer>
         <EntityType Name="DefTable">
           <Key>
@@ -96,6 +155,42 @@
           <Property Name="TableName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ControlType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ControlName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="school">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Address" />
+            <PropertyRef Name="Contact" />
+            <PropertyRef Name="Mobile" />
+            <PropertyRef Name="Email" />
+            <PropertyRef Name="Website" />
+            <PropertyRef Name="Princepal" />
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="Pasword" />
+            <PropertyRef Name="LastEditedBy" />
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="LastEditedOn" />
+            <PropertyRef Name="IsActive" />
+            <PropertyRef Name="IsExpired" />
+            <PropertyRef Name="Logo" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="Contact" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="Website" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="Princepal" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Pasword" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="LastEditedBy" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="LastEditedOn" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IsActive" Type="Int16" Nullable="false" />
+          <Property Name="IsExpired" Type="Int16" Nullable="false" />
+          <Property Name="Logo" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -142,6 +237,28 @@
                 <ScalarProperty Name="ControlType" ColumnName="ControlType" />
                 <ScalarProperty Name="TableName" ColumnName="TableName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="schools">
+            <EntityTypeMapping TypeName="Model.school">
+              <MappingFragment StoreEntitySet="school">
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="IsExpired" ColumnName="IsExpired" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="LastEditedOn" ColumnName="LastEditedOn" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="LastEditedBy" ColumnName="LastEditedBy" />
+                <ScalarProperty Name="Pasword" ColumnName="Pasword" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Princepal" ColumnName="Princepal" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

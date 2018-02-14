@@ -9,6 +9,7 @@
         <EntityTypeShape EntityType="Model.DefTable" Width="1.5" PointX="0.75" PointY="2.75" />
         <EntityTypeShape EntityType="Model.DefControl" Width="1.5" PointX="3.375" PointY="4.75" />
         <EntityTypeShape EntityType="Model.CustomeFeild" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="Model.school" Width="1.5" PointX="0.75" PointY="5.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,0 +1,166 @@
+﻿@model opr.Models.school
+@{
+    ViewBag.Title = "Add new Schools";
+    //Layout = "~/Areas/Admin/Views/Shared/_LayoutDashboard.cshtml";
+}
+@*<script src="~/Assets/demo/demo-switcher.js"></script>
+    <link href="~/Assets/plugins/switchery/switchery.css" rel="stylesheet" />*@
+<div class="col-lg-8">
+    <div class="panel panel-primary" id="schoolInfo">
+        <div class="panel-heading">
+            <h5>School Information</h5>
+        </div>
+        <div class="panel-body">
+            <div class="control-group">
+                <div id="message">
+                </div>
+            </div>
+            <br />
+            @using (Ajax.BeginForm("Create", "Schools", new AjaxOptions { HttpMethod = "POST", LoadingElementDuration = 200, LoadingElementId = "loader", UpdateTargetId = "message", OnSuccess = "CreateSuccessWithReload" }))
+            {
+                <div class="control-group">
+                    <label class="control-label" for="basicinput">School Name</label>
+                    <div class="controls">
+                        @Html.HiddenFor(m => Model.ID)
+                        @Html.TextBoxFor(m => Model.Name, new { id = "Name", placeholder = "School Name", @class = "form-control", required = "required" })
+
+                        <span class="field-validation-valid" data-valmsg-for="Name" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="basicinput">Address</label>
+                    <div class="controls">
+                        @Html.TextBoxFor(m => Model.Address, new { placeholder = "Address ", @class = "form-control", required = "required" })
+
+                        <span class="field-validation-valid" data-valmsg-for="Address" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="basicinput">Contact No</label>
+                    <div class="controls">
+                        @Html.TextBoxFor(m => Model.Contact, new { placeholder = "Contact No", @class = "form-control", required = "required" })
+                        <span class="help-inline"></span>
+                        <span class="field-validation-valid" data-valmsg-for="Contact" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="basicinput">Mobile No</label>
+                    <div class="controls">
+                        @Html.TextBoxFor(m => Model.Mobile, new { placeholder = "Mobile No", @class = "form-control", required = "required" })
+
+                        <span class="help-inline"></span>
+                        <span class="field-validation-valid" data-valmsg-for="Mobile" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="basicinput">Email</label>
+                    <div class="controls">
+                        @Html.TextBoxFor(m => Model.Email, new { placeholder = "Email ", @class = "form-control", required = "required" })
+
+                        <span class="help-inline"></span>
+                        <span class="field-validation-valid" data-valmsg-for="Email" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="basicinput">Website</label>
+                    <div class="controls">
+                        @Html.TextBoxFor(m => Model.Website, new { placeholder = "Website", @class = "form-control" })
+
+                        <span class="help-inline"></span>
+                        <span class="field-validation-valid" data-valmsg-for="Website" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="basicinput">Principal Name</label>
+                    <div class="controls">
+                        @Html.TextBoxFor(m => Model.Princepal, new { placeholder = "Principal Name", @class = "form-control", required = "required" })
+
+                        <span class="help-inline"></span>
+                        <span class="field-validation-valid" data-valmsg-for="Princepal" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="basicinput">User name</label>
+                    <div class="controls">
+                        @Html.TextBoxFor(m => Model.UserName, new { placeholder = "user name...", @class = "form-control", required = "required" })
+
+                        <span class="help-inline"></span>
+                        <span class="field-validation-valid" data-valmsg-for="UserName" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="basicinput">Password</label>
+                    <div class="controls">
+                        @Html.PasswordFor(m => Model.Pasword, new { placeholder = "password...", @class = "form-control", required = "required" })
+
+                        <span class="help-inline"></span>
+                        <span class="field-validation-valid" data-valmsg-for="Pasword" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="basicinput">Campus</label>
+                    <div class="controls">
+                        @*@Html.DropDownList("Campus", (SelectList)ViewBag.Campuses, new { multiple = "multiple", @class = " chzn-select", required = "required" })*@
+                        <span class="help-inline"></span>
+                        <span class="field-validation-valid" data-valmsg-for="Campus" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="control-group">
+                        <label class="control-label" for="basicinput">Photo</label>
+                        <div class="controls">
+                            <img id="ImgPreview" style="width:150px" />
+                            @*@Html.TextBoxFor(model => model.img, new { @class = "form-control", type = "file" })
+                                @Html.ValidationMessageFor(model => model.img)>*@
+                            <input type="text" style="width:0px !important; height:0px !important;" id="txtValue" name="Logo" required />
+                            <a href="javascript:void()" onclick="ImageSelector()"><i class="fa fa-camera"></i> Select Photo</a>
+
+                            <span class="field-validation-valid" data-valmsg-for="img" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="control-group">
+                        <label class="control-label" for="basicinput">Account Active?</label>
+                        <div class="controls">
+                            @*@Html.CheckBoxFor(model => model.IsActive, new { @class = "bootstrap-switch", @checked = "true" })*@
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="control-group">
+                        <label class="control-label" for="basicinput">Account Expired?</label>
+                        <div class="controls">
+                            @*@Html.CheckBoxFor(model => model.IsExpired, new { @class = "bootstrap-switch" })*@
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <div class="col-lg-2" id="loader" style="display:none;">
+                        <img src="~/Images/WebsiteContent/camera-loader.gif" />
+                    </div>
+                    <button class="btn  btn-default pull-right"><i class="fa fa-save"> </i> Save</button>
+                </div>
+            }
+        </div>
+    </div>
+
+
+</div><!--/.content-->
+
+<div class="clearfix"></div>
+
+
+
+
+

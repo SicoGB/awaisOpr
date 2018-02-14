@@ -29,5 +29,6 @@ namespace opr.Models
         public virtual DbSet<DefTable> DefTables { get; set; }
         public virtual DbSet<DefControl> DefControls { get; set; }
         public virtual DbSet<CustomeFeild> CustomeFeilds { get; set; }
+        public virtual DbSet<school> schools { get; set; }
     }
 }

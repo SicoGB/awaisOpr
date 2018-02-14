@@ -206,6 +206,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SchoolRegController.cs" />
     <Compile Include="Controllers\SectionsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -238,6 +239,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>oprModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\school.cs">
+      <DependentUpon>oprModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SchoolModel.cs" />
     <Compile Include="Models\Section.cs">
       <DependentUpon>oprModel.tt</DependentUpon>
     </Compile>
@@ -336,6 +341,7 @@
     <Content Include="Views\Sections\Index - Copy.cshtml" />
     <Content Include="Views\Sections\CustomfeildView.cshtml" />
     <Content Include="Views\Sections\_CustomfeildView.cshtml" />
+    <Content Include="Views\SchoolReg\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -353,7 +359,11 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Default\" />
+    <Folder Include="Views\SchoolRegister\" />
+    <Folder Include="Views\S\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

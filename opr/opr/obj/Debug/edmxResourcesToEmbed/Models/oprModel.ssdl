@@ -23,6 +23,44 @@
     <Property Name="TableId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TableName" Type="varchar" MaxLength="50" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\AWAIS\SOURCE\REPOS\AWAISOPR\OPR\OPR\APP_DATA\ASPNET-OPR-20180131100631.MDF.dbo.school' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="school">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="Address" />
+      <PropertyRef Name="Contact" />
+      <PropertyRef Name="Mobile" />
+      <PropertyRef Name="Email" />
+      <PropertyRef Name="Website" />
+      <PropertyRef Name="Princepal" />
+      <PropertyRef Name="UserName" />
+      <PropertyRef Name="Pasword" />
+      <PropertyRef Name="LastEditedBy" />
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="LastEditedOn" />
+      <PropertyRef Name="IsActive" />
+      <PropertyRef Name="IsExpired" />
+      <PropertyRef Name="Logo" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="Address" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="Contact" Type="varchar" MaxLength="14" Nullable="false" />
+    <Property Name="Mobile" Type="varchar" MaxLength="12" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="Website" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="Princepal" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Pasword" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="LastEditedBy" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="LastEditedOn" Type="date" Nullable="false" />
+    <Property Name="IsActive" Type="smallint" Nullable="false" />
+    <Property Name="IsExpired" Type="smallint" Nullable="false" />
+    <Property Name="Logo" Type="varchar" MaxLength="300" Nullable="false" />
+  </EntityType>
   <EntityType Name="Sections">
     <Key>
       <PropertyRef Name="Id" />
@@ -43,5 +81,25 @@
     <EntitySet Name="DefControl" EntityType="Self.DefControl" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DefTable" EntityType="Self.DefTable" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Sections" EntityType="Self.Sections" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="school" EntityType="Self.school" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [school].[ID] AS [ID], 
+    [school].[Name] AS [Name], 
+    [school].[Address] AS [Address], 
+    [school].[Contact] AS [Contact], 
+    [school].[Mobile] AS [Mobile], 
+    [school].[Email] AS [Email], 
+    [school].[Website] AS [Website], 
+    [school].[Princepal] AS [Princepal], 
+    [school].[UserName] AS [UserName], 
+    [school].[Pasword] AS [Pasword], 
+    [school].[LastEditedBy] AS [LastEditedBy], 
+    [school].[UserID] AS [UserID], 
+    [school].[LastEditedOn] AS [LastEditedOn], 
+    [school].[IsActive] AS [IsActive], 
+    [school].[IsExpired] AS [IsExpired], 
+    [school].[Logo] AS [Logo]
+    FROM [dbo].[school] AS [school]</DefiningQuery>
+    </EntitySet>
   </EntityContainer>
 </Schema>

@@ -20,6 +20,7 @@
     <EntitySet Name="DefTables" EntityType="Model.DefTable" />
     <EntitySet Name="DefControls" EntityType="Model.DefControl" />
     <EntitySet Name="CustomeFeilds" EntityType="Model.CustomeFeild" />
+    <EntitySet Name="schools" EntityType="Model.school" />
   </EntityContainer>
   <EntityType Name="DefTable">
     <Key>
@@ -43,5 +44,41 @@
     <Property Name="TableName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="ControlType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="ControlName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="school">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="Address" />
+      <PropertyRef Name="Contact" />
+      <PropertyRef Name="Mobile" />
+      <PropertyRef Name="Email" />
+      <PropertyRef Name="Website" />
+      <PropertyRef Name="Princepal" />
+      <PropertyRef Name="UserName" />
+      <PropertyRef Name="Pasword" />
+      <PropertyRef Name="LastEditedBy" />
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="LastEditedOn" />
+      <PropertyRef Name="IsActive" />
+      <PropertyRef Name="IsExpired" />
+      <PropertyRef Name="Logo" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="Contact" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="Mobile" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="Website" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="Princepal" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Pasword" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="LastEditedBy" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="LastEditedOn" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="IsActive" Type="Int16" Nullable="false" />
+    <Property Name="IsExpired" Type="Int16" Nullable="false" />
+    <Property Name="Logo" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>
