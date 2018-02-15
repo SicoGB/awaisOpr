@@ -66,6 +66,85 @@ warning 6002: The table/view 'C:\USERS\AWAIS\SOURCE\REPOS\AWAISOPR\OPR\OPR\APP_D
           <Property Name="IsExpired" Type="smallint" Nullable="false" />
           <Property Name="Logo" Type="varchar" MaxLength="300" Nullable="false" />
         </EntityType>
+        <EntityType Name="school_campus">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SchoolID" Type="int" Nullable="false" />
+          <Property Name="CampusID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="school_class">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SchoolID" Type="int" Nullable="false" />
+          <Property Name="ClassID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="school_class_group">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SchoolID" Type="int" Nullable="false" />
+          <Property Name="ClassID" Type="int" Nullable="false" />
+          <Property Name="GroupID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="school_class_group_section">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SchoolID" Type="int" Nullable="false" />
+          <Property Name="ClassID" Type="int" Nullable="false" />
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="SectionID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="school_class_group_subjects">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SchoolID" Type="int" Nullable="false" />
+          <Property Name="ClassID" Type="int" Nullable="false" />
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="SubjectID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="school_class_section">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SchoolID" Type="int" Nullable="false" />
+          <Property Name="ClassID" Type="int" Nullable="false" />
+          <Property Name="SectionID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="school_class_subjects">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SchoolID" Type="int" Nullable="false" />
+          <Property Name="ClassID" Type="int" Nullable="false" />
+          <Property Name="SubjectID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="schoolleaveschedule">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="holidayName" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="schoolusers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SchoolID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Sections">
           <Key>
             <PropertyRef Name="Id" />
@@ -81,11 +160,50 @@ warning 6002: The table/view 'C:\USERS\AWAIS\SOURCE\REPOS\AWAISOPR\OPR\OPR\APP_D
           <Property Name="ModifiedBy" Type="nvarchar" MaxLength="128" />
           <Property Name="ModifiedDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="LastLoginDate" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="LastPasswordChange" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="IsActive" Type="smallint" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="110" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="ProfilePicture" Type="varchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <Association Name="schoolusers_ibfk_2">
+          <End Role="users" Type="Self.users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="schoolusers" Type="Self.schoolusers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="schoolusers">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="CustomeFeilds" EntityType="Self.CustomeFeilds" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DefControl" EntityType="Self.DefControl" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DefTable" EntityType="Self.DefTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="school_campus" EntityType="Self.school_campus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="school_class" EntityType="Self.school_class" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="school_class_group" EntityType="Self.school_class_group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="school_class_group_section" EntityType="Self.school_class_group_section" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="school_class_group_subjects" EntityType="Self.school_class_group_subjects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="school_class_section" EntityType="Self.school_class_section" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="school_class_subjects" EntityType="Self.school_class_subjects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="schoolleaveschedule" EntityType="Self.schoolleaveschedule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="schoolusers" EntityType="Self.schoolusers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sections" EntityType="Self.Sections" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="school" EntityType="Self.school" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [school].[ID] AS [ID], 
@@ -106,6 +224,10 @@ warning 6002: The table/view 'C:\USERS\AWAIS\SOURCE\REPOS\AWAISOPR\OPR\OPR\APP_D
     [school].[Logo] AS [Logo]
     FROM [dbo].[school] AS [school]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="schoolusers_ibfk_2" Association="Self.schoolusers_ibfk_2">
+            <End Role="users" EntitySet="users" />
+            <End Role="schoolusers" EntitySet="schoolusers" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -131,7 +253,21 @@ warning 6002: The table/view 'C:\USERS\AWAIS\SOURCE\REPOS\AWAISOPR\OPR\OPR\APP_D
           <EntitySet Name="DefTables" EntityType="Model.DefTable" />
           <EntitySet Name="DefControls" EntityType="Model.DefControl" />
           <EntitySet Name="CustomeFeilds" EntityType="Model.CustomeFeild" />
+          <EntitySet Name="users" EntityType="Model.user" />
+          <EntitySet Name="school_campus" EntityType="Model.school_campus" />
           <EntitySet Name="schools" EntityType="Model.school" />
+          <EntitySet Name="school_class" EntityType="Model.school_class" />
+          <EntitySet Name="school_class_group" EntityType="Model.school_class_group" />
+          <EntitySet Name="school_class_group_section" EntityType="Model.school_class_group_section" />
+          <EntitySet Name="school_class_group_subjects" EntityType="Model.school_class_group_subjects" />
+          <EntitySet Name="school_class_section" EntityType="Model.school_class_section" />
+          <EntitySet Name="school_class_subjects" EntityType="Model.school_class_subjects" />
+          <EntitySet Name="schoolleaveschedules" EntityType="Model.schoolleaveschedule" />
+          <EntitySet Name="schoolusers" EntityType="Model.schooluser" />
+          <AssociationSet Name="schoolusers_ibfk_2" Association="Model.schoolusers_ibfk_2">
+            <End Role="user" EntitySet="users" />
+            <End Role="schooluser" EntitySet="schoolusers" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="DefTable">
           <Key>
@@ -155,6 +291,30 @@ warning 6002: The table/view 'C:\USERS\AWAIS\SOURCE\REPOS\AWAISOPR\OPR\OPR\APP_D
           <Property Name="TableName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ControlType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ControlName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="LastLoginDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="LastPasswordChange" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IsActive" Type="Int16" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="110" FixedLength="false" Unicode="false" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="ProfilePicture" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="schoolusers" Relationship="Model.schoolusers_ibfk_2" FromRole="user" ToRole="schooluser" />
+        </EntityType>
+        <EntityType Name="school_campus">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SchoolID" Type="Int32" Nullable="false" />
+          <Property Name="CampusID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="school">
           <Key>
@@ -192,6 +352,92 @@ warning 6002: The table/view 'C:\USERS\AWAIS\SOURCE\REPOS\AWAISOPR\OPR\OPR\APP_D
           <Property Name="IsExpired" Type="Int16" Nullable="false" />
           <Property Name="Logo" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="school_class">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SchoolID" Type="Int32" Nullable="false" />
+          <Property Name="ClassID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="school_class_group">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SchoolID" Type="Int32" Nullable="false" />
+          <Property Name="ClassID" Type="Int32" Nullable="false" />
+          <Property Name="GroupID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="school_class_group_section">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SchoolID" Type="Int32" Nullable="false" />
+          <Property Name="ClassID" Type="Int32" Nullable="false" />
+          <Property Name="GroupID" Type="Int32" Nullable="false" />
+          <Property Name="SectionID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="school_class_group_subjects">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SchoolID" Type="Int32" Nullable="false" />
+          <Property Name="ClassID" Type="Int32" Nullable="false" />
+          <Property Name="GroupID" Type="Int32" Nullable="false" />
+          <Property Name="SubjectID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="school_class_section">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SchoolID" Type="Int32" Nullable="false" />
+          <Property Name="ClassID" Type="Int32" Nullable="false" />
+          <Property Name="SectionID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="school_class_subjects">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SchoolID" Type="Int32" Nullable="false" />
+          <Property Name="ClassID" Type="Int32" Nullable="false" />
+          <Property Name="SubjectID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="schoolleaveschedule">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="holidayName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="schooluser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SchoolID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="Model.schoolusers_ibfk_2" FromRole="schooluser" ToRole="user" />
+        </EntityType>
+        <Association Name="schoolusers_ibfk_2">
+          <End Type="Model.user" Role="user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.schooluser" Role="schooluser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="schooluser">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -240,6 +486,31 @@ warning 6002: The table/view 'C:\USERS\AWAIS\SOURCE\REPOS\AWAISOPR\OPR\OPR\APP_D
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="Model.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="LastPasswordChange" ColumnName="LastPasswordChange" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="school_campus">
+            <EntityTypeMapping TypeName="Model.school_campus">
+              <MappingFragment StoreEntitySet="school_campus">
+                <ScalarProperty Name="CampusID" ColumnName="CampusID" />
+                <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="schools">
             <EntityTypeMapping TypeName="Model.school">
               <MappingFragment StoreEntitySet="school">
@@ -258,6 +529,85 @@ warning 6002: The table/view 'C:\USERS\AWAIS\SOURCE\REPOS\AWAISOPR\OPR\OPR\APP_D
                 <ScalarProperty Name="Contact" ColumnName="Contact" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="school_class">
+            <EntityTypeMapping TypeName="Model.school_class">
+              <MappingFragment StoreEntitySet="school_class">
+                <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+                <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="school_class_group">
+            <EntityTypeMapping TypeName="Model.school_class_group">
+              <MappingFragment StoreEntitySet="school_class_group">
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+                <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="school_class_group_section">
+            <EntityTypeMapping TypeName="Model.school_class_group_section">
+              <MappingFragment StoreEntitySet="school_class_group_section">
+                <ScalarProperty Name="SectionID" ColumnName="SectionID" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+                <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="school_class_group_subjects">
+            <EntityTypeMapping TypeName="Model.school_class_group_subjects">
+              <MappingFragment StoreEntitySet="school_class_group_subjects">
+                <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+                <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="school_class_section">
+            <EntityTypeMapping TypeName="Model.school_class_section">
+              <MappingFragment StoreEntitySet="school_class_section">
+                <ScalarProperty Name="SectionID" ColumnName="SectionID" />
+                <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+                <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="school_class_subjects">
+            <EntityTypeMapping TypeName="Model.school_class_subjects">
+              <MappingFragment StoreEntitySet="school_class_subjects">
+                <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+                <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+                <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="schoolleaveschedules">
+            <EntityTypeMapping TypeName="Model.schoolleaveschedule">
+              <MappingFragment StoreEntitySet="schoolleaveschedule">
+                <ScalarProperty Name="holidayName" ColumnName="holidayName" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="schoolusers">
+            <EntityTypeMapping TypeName="Model.schooluser">
+              <MappingFragment StoreEntitySet="schoolusers">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="SchoolID" ColumnName="SchoolID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

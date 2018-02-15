@@ -224,6 +224,7 @@
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ModelBase.cs" />
     <Compile Include="Models\oprModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -242,8 +243,38 @@
     <Compile Include="Models\school.cs">
       <DependentUpon>oprModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\schoolleaveschedule.cs">
+      <DependentUpon>oprModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SchoolModel.cs" />
+    <Compile Include="Models\schooluser.cs">
+      <DependentUpon>oprModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\school_campus.cs">
+      <DependentUpon>oprModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\school_class.cs">
+      <DependentUpon>oprModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\school_class_group.cs">
+      <DependentUpon>oprModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\school_class_group_section.cs">
+      <DependentUpon>oprModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\school_class_group_subjects.cs">
+      <DependentUpon>oprModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\school_class_section.cs">
+      <DependentUpon>oprModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\school_class_subjects.cs">
+      <DependentUpon>oprModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Section.cs">
+      <DependentUpon>oprModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\user.cs">
       <DependentUpon>oprModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -274,6 +305,7 @@
       <DependentUpon>oprModel.edmx</DependentUpon>
       <LastGenOutput>oprModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\bootstrap-switch.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">

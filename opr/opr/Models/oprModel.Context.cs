@@ -29,6 +29,16 @@ namespace opr.Models
         public virtual DbSet<DefTable> DefTables { get; set; }
         public virtual DbSet<DefControl> DefControls { get; set; }
         public virtual DbSet<CustomeFeild> CustomeFeilds { get; set; }
+        public virtual DbSet<user> users { get; set; }
+        public virtual DbSet<school_campus> school_campus { get; set; }
         public virtual DbSet<school> schools { get; set; }
+        public virtual DbSet<school_class> school_class { get; set; }
+        public virtual DbSet<school_class_group> school_class_group { get; set; }
+        public virtual DbSet<school_class_group_section> school_class_group_section { get; set; }
+        public virtual DbSet<school_class_group_subjects> school_class_group_subjects { get; set; }
+        public virtual DbSet<school_class_section> school_class_section { get; set; }
+        public virtual DbSet<school_class_subjects> school_class_subjects { get; set; }
+        public virtual DbSet<schoolleaveschedule> schoolleaveschedules { get; set; }
+        public virtual DbSet<schooluser> schoolusers { get; set; }
     }
 }

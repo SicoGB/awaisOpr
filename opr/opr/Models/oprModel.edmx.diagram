@@ -9,7 +9,18 @@
         <EntityTypeShape EntityType="Model.DefTable" Width="1.5" PointX="0.75" PointY="2.75" />
         <EntityTypeShape EntityType="Model.DefControl" Width="1.5" PointX="3.375" PointY="4.75" />
         <EntityTypeShape EntityType="Model.CustomeFeild" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="Model.school_campus" Width="1.5" PointX="5.375" PointY="3.75" />
+        <EntityTypeShape EntityType="Model.user" Width="1.5" PointX="5.375" PointY="3.75" />
         <EntityTypeShape EntityType="Model.school" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="Model.school_class" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Model.school_class_group" Width="1.5" PointX="3.75" PointY="7.75" />
+        <EntityTypeShape EntityType="Model.school_class_group_section" Width="1.5" PointX="5.75" PointY="7.75" />
+        <EntityTypeShape EntityType="Model.school_class_group_subjects" Width="1.5" PointX="7.75" PointY="7.75" />
+        <EntityTypeShape EntityType="Model.school_class_section" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Model.school_class_subjects" Width="1.5" PointX="9.75" PointY="7.75" />
+        <EntityTypeShape EntityType="Model.schoolleaveschedule" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="Model.schooluser" Width="1.5" PointX="8" PointY="4.375" />
+        <AssociationConnector Association="Model.schoolusers_ibfk_2" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
